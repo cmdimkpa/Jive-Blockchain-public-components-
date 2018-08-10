@@ -36,7 +36,7 @@ def mine():
     return http.post(submit_pow,json.dumps(data)).content
 
 @app.route("/hello-world") # run this after setting up for the first time
-def hello_world():
+def hello_world_():
     return http.get(hello_world).content
 
 if __name__ == "__main__":
