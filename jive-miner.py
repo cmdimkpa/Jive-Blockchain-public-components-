@@ -31,13 +31,22 @@ hello_world = "http://router.jive-interface.net/miner/hello-world"
 
 @app.route("/mine")
 def mine():
-    start,stop = eval(eval(http.get(next_coords).content))
-    data = {"pow":proof_of_work(start,stop)}
-    return http.post(submit_pow,json.dumps(data)).content
+    try:
+        feedback = http.get(next_coords).content
+        if "Error: solution limit reached" in feedback:
+            return feedback
+        start,stop = eval(eval(feedback))
+        data = {"pow":proof_of_work(start,stop)}
+        return http.post(submit_pow,json.dumps(data)).content
+    except Exception as e:
+        return str(e)
 
 @app.route("/hello-world") # run this after setting up for the first time
 def hello_world_():
-    return http.get(hello_world).content
+    try:
+        return http.get(hello_world).content
+    except Exception as e:
+        return str(e)
 
 if __name__ == "__main__":
     app.run(host=miner_ip,port=rrds_port)
