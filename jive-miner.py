@@ -12,6 +12,7 @@
 #  * pip2 install flask_cors                                 #
 #  * pip2 install rigo                                       #
 #  * pip2 install rrds_template                              #
+#  * pip2 install rrds_patch                                 #
 #  * pip2 install jive_pow                                   #
 #  * pip2 install jive_session                               #
 #  * pip2 install requests                                   #
@@ -20,6 +21,7 @@
 ##############################################################
 
 from rrds_template.lib import *
+from rrds_patch.cache import *
 from jive_pow.POW import *
 from jive_session.session import Session
 import requests as http
